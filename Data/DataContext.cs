@@ -1,6 +1,7 @@
 ﻿using SymphonyEquilibriAPI.Models.Employee;
 using SymphonyEquilibriAPI.Models.Project;
 using SymphonyEquilibriAPI.Models.Statistics;
+using SymphonyEquilibriAPI.Models.User;
 
 namespace SymphonyEquilibriAPI.Data
 {
@@ -15,5 +16,7 @@ namespace SymphonyEquilibriAPI.Data
         public DbSet<Project> Projects { get; set; }
 
         public DbSet<Statistics> Statistics { get; set; }
+
+        public DbSet<User> Users { get; set; }
     }
 }
