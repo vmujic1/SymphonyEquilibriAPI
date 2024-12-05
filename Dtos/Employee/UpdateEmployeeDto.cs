@@ -1,9 +1,12 @@
-﻿namespace SymphonyEquilibriAPI.Models.Employee
+﻿namespace SymphonyEquilibriAPI.Dtos.Employee
 {
-    public class AddEmployeeDto
+    public class UpdateEmployeeDto
     {
+        public int Id { get; set; } = 0;
+
         public string Name { get; set; } = string.Empty;
 
         public string DepartmentName { get; set; } = string.Empty;
+
     }
 }

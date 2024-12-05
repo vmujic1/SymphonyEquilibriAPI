@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace SymphonyEquilibriAPI.Models.Activity
+namespace SymphonyEquilibriAPI.Dtos.Activity
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
 

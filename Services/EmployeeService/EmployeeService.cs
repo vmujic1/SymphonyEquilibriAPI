@@ -1,6 +1,7 @@
 ﻿using SymphonyEquilibriAPI.Data;
+using SymphonyEquilibriAPI.Dtos.Activity;
+using SymphonyEquilibriAPI.Dtos.Employee;
 using SymphonyEquilibriAPI.Models;
-using SymphonyEquilibriAPI.Models.Activity;
 using SymphonyEquilibriAPI.Models.Employee;
 using SymphonyEquilibriAPI.Models.Project;
 using SymphonyEquilibriAPI.Models.Statistics;

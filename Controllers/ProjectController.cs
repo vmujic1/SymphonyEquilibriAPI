@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SymphonyEquilibriAPI.Dtos.Project;
 using SymphonyEquilibriAPI.Models;
 using SymphonyEquilibriAPI.Models.Project;
 using SymphonyEquilibriAPI.Services.ProjectService;

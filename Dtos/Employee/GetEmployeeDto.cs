@@ -1,7 +1,8 @@
-﻿using SymphonyEquilibriAPI.Models.Statistics;
+﻿using SymphonyEquilibriAPI.Dtos.Statistics;
 
-namespace SymphonyEquilibriAPI.Models.Employee
+namespace SymphonyEquilibriAPI.Dtos.Employee
 {
+    using SymphonyEquilibriAPI.Models.Employee;
     public class GetEmployeeDto
     {
         public GetEmployeeDto(Employee employee)

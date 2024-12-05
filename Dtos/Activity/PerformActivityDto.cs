@@ -1,5 +1,6 @@
-﻿namespace SymphonyEquilibriAPI.Models.Activity
+﻿namespace SymphonyEquilibriAPI.Dtos.Activity
 {
+    using SymphonyEquilibriAPI.Dtos.Activity;
     public class PerformActivityDto
     {
         public int EmployeeId { get; set; }

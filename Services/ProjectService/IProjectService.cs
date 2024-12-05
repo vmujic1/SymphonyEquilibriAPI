@@ -1,4 +1,5 @@
-﻿using SymphonyEquilibriAPI.Models;
+﻿using SymphonyEquilibriAPI.Dtos.Project;
+using SymphonyEquilibriAPI.Models;
 using SymphonyEquilibriAPI.Models.Project;
 
 namespace SymphonyEquilibriAPI.Services.ProjectService

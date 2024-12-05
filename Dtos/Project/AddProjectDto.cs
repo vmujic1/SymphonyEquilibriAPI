@@ -1,4 +1,6 @@
-﻿namespace SymphonyEquilibriAPI.Models.Project
+﻿using SymphonyEquilibriAPI.Models.Project;
+
+namespace SymphonyEquilibriAPI.Dtos.Project
 {
     public class AddProjectDto
     {

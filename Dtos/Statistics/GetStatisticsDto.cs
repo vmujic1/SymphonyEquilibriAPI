@@ -1,5 +1,6 @@
-﻿namespace SymphonyEquilibriAPI.Models.Statistics
+﻿namespace SymphonyEquilibriAPI.Dtos.Statistics
 {
+    using SymphonyEquilibriAPI.Models.Statistics;
     public class GetStatisticsDto
     {
         public GetStatisticsDto(Statistics statistics)

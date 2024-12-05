@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SymphonyEquilibriAPI.Dtos.Activity;
+using SymphonyEquilibriAPI.Dtos.Employee;
 using SymphonyEquilibriAPI.Models;
-using SymphonyEquilibriAPI.Models.Activity;
 using SymphonyEquilibriAPI.Models.Employee;
 using SymphonyEquilibriAPI.Services.EmployeeService;
 

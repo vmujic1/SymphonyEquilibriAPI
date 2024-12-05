@@ -1,6 +1,6 @@
-﻿using SymphonyEquilibriAPI.Models;
-using SymphonyEquilibriAPI.Models.Activity;
-using SymphonyEquilibriAPI.Models.Employee;
+﻿using SymphonyEquilibriAPI.Dtos.Activity;
+using SymphonyEquilibriAPI.Dtos.Employee;
+using SymphonyEquilibriAPI.Models;
 
 namespace SymphonyEquilibriAPI.Services.EmployeeService
 {

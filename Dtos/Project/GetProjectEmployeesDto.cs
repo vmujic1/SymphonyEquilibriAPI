@@ -1,5 +1,4 @@
-﻿
-namespace SymphonyEquilibriAPI.Models.Project
+﻿namespace SymphonyEquilibriAPI.Dtos.Project
 {
     using SymphonyEquilibriAPI.Models.Employee;
 
