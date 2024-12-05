@@ -1,17 +1,22 @@
-﻿using Microsoft.VisualBasic;
+﻿using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
 using SymphonyEquilibriAPI.Data;
 using SymphonyEquilibriAPI.Models;
 using SymphonyEquilibriAPI.Models.User;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace SymphonyEquilibriAPI.Services.AuthService
 {
     public class AuthService : IAuthService
     {
         private readonly DataContext _context;
+        private readonly IConfiguration _configuration;
 
-        public AuthService(DataContext context)
+        public AuthService(DataContext context, IConfiguration configuration)
         {
             this._context = context;
+            this._configuration = configuration;
         }
         public async Task<ServiceResponse<string>> Login(string username, string password)
         {
@@ -30,7 +35,7 @@ namespace SymphonyEquilibriAPI.Services.AuthService
             } 
             else
             {
-                serviceResponse.Data = user.Id.ToString();
+                serviceResponse.Data = CreateToken(user);
                 serviceResponse.Message = "Successfully logged in!";
             }
 
@@ -86,6 +91,33 @@ namespace SymphonyEquilibriAPI.Services.AuthService
                 return computeHash.SequenceEqual(passwordHash);
             }
 
+        }
+
+        private string CreateToken(User user)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
+            };
+
+            SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.UTF8
+                .GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return tokenHandler.WriteToken(token); // Token
         }
     }
 }
