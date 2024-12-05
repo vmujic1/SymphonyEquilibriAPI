@@ -1,5 +1,6 @@
 global using Microsoft.EntityFrameworkCore;
 using SymphonyEquilibriAPI.Data;
+using SymphonyEquilibriAPI.Services.AuthService;
 using SymphonyEquilibriAPI.Services.EmployeeService;
 using SymphonyEquilibriAPI.Services.ProjectService;
 
@@ -15,6 +16,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
