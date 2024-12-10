@@ -28,7 +28,7 @@ namespace SymphonyEquilibriAPI.Services.AuthService
                 serviceResponse.Success = false;
                 serviceResponse.Message = "User not found!";
             }
-            else if(!VerifyPasswordHash(password, user.PasswrodHash, user.PasswordSalt))
+            else if(!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
                 serviceResponse.Success = false;
                 serviceResponse.Message = "Wrong password.";
@@ -53,7 +53,7 @@ namespace SymphonyEquilibriAPI.Services.AuthService
             }
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            user.PasswrodHash = passwordHash;
+            user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
             user.Role = UserRole.ProjectManager;
 
@@ -74,11 +74,11 @@ namespace SymphonyEquilibriAPI.Services.AuthService
             return false;
         }
 
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwrodSalt)
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
-                passwrodSalt = hmac.Key;
+                passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
@@ -100,10 +100,11 @@ namespace SymphonyEquilibriAPI.Services.AuthService
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Role, user.Role.ToString())
+
             };
 
             SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.UTF8
-                .GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+                .GetBytes(_configuration.GetSection("AppSettings:Token").Value!));
 
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 

@@ -6,6 +6,7 @@ using SymphonyEquilibriAPI.Services.AuthService;
 
 namespace SymphonyEquilibriAPI.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class AuthController : Controller

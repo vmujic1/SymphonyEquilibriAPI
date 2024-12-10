@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SymphonyEquilibriAPI.Dtos.Activity;
 using SymphonyEquilibriAPI.Dtos.Employee;
 using SymphonyEquilibriAPI.Models;
@@ -18,12 +19,14 @@ namespace SymphonyEquilibriAPI.Controllers
             this._employeeService = employeeService;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("GetAll")]
         public async Task<ActionResult<ServiceResponse<List<GetEmployeeDto>>>> GetAllEmployees()
         {
             return Ok(await _employeeService.GetAllEmployees());
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceResponse<GetEmployeeDto>>> GetEmployeeById(int id)
         {
@@ -35,12 +38,14 @@ namespace SymphonyEquilibriAPI.Controllers
             return Ok(await _employeeService.GetEmployeeById(id));
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<ServiceResponse<List<Employee>>>> AddEmployee(AddEmployeeDto newEmployee)
         {
             return Ok(await _employeeService.AddEmployee(newEmployee));
         }
 
+        [Authorize(Roles = "Admin,ProjectManager")]
         [HttpPost("Project")]
         public async Task<ActionResult<ServiceResponse<GetEmployeeDto>>> AddEmployeeProject(AddEmployeeProjectDto addEmployeeProject)
         {
@@ -52,6 +57,7 @@ namespace SymphonyEquilibriAPI.Controllers
             return Ok(response);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public async Task<ActionResult<ServiceResponse<List<GetEmployeeDto>>>> DeleteEmployee(int id)
         {
@@ -64,6 +70,7 @@ namespace SymphonyEquilibriAPI.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public async Task<ActionResult<ServiceResponse<GetEmployeeDto>>> UpdateEmployee (UpdateEmployeeDto updateEmployee)
         {
@@ -76,6 +83,7 @@ namespace SymphonyEquilibriAPI.Controllers
             return Ok(response);
         }
 
+        [Authorize(Roles = "Admin,ProjectManager")]
         [HttpDelete("Project")]
         public async Task<ActionResult<ServiceResponse<GetEmployeeDto>>> DeleteteEmployeeProject(DeleteEmployeeProjectDto deleteEmployeeProject)
         {
@@ -87,6 +95,7 @@ namespace SymphonyEquilibriAPI.Controllers
             return Ok(response);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("PerformActivity")]
         public async Task<ActionResult<ServiceResponse<GetEmployeeDto>>> PerformActivity(PerformActivityDto performActivityDto)
         {

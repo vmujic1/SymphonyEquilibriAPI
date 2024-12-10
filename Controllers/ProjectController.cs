@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SymphonyEquilibriAPI.Dtos.Project;
 using SymphonyEquilibriAPI.Models;
 using SymphonyEquilibriAPI.Models.Project;
@@ -6,6 +7,7 @@ using SymphonyEquilibriAPI.Services.ProjectService;
 
 namespace SymphonyEquilibriAPI.Controllers
 {
+    
     [ApiController]
     [Route("/api/[controller]")]
     public class ProjectController : Controller
@@ -16,6 +18,7 @@ namespace SymphonyEquilibriAPI.Controllers
         {
             this._projectService = projectService;
         }
+        [Authorize(Roles = "ProjectManager")]
         [HttpPost]
         public async Task<ActionResult<ServiceResponse<Project>>> AddProject(AddProjectDto newProject)
         {
